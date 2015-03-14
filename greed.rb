@@ -1,4 +1,9 @@
-def score(dice)
+def greed
+  dice = []
+  5.times do
+    dice << rand(1..6)
+  end
+  puts "You rolled #{dice}."
   score = 0
   for i in 1..6
     if i == 1
@@ -15,5 +20,5 @@ def score(dice)
       score += 100*i if dice.count(i) >= 3
       end
     end
-  score
+  puts "Your score is #{score}. Thanks for playing!"
 end
