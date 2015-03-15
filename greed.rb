@@ -16,7 +16,7 @@ def greed
     elsif i == 5 #if you roll a five
       #if you rolled 3 or more fives, get 500 points for rolling 3 fives plus 50 points for every additional five
       score += (500 + 50*(dice.count(i) - 3) )  if dice.count(i) >= 3
-      #if you rolld less than 3 fives, just get 50 points for every five you rolled
+      #if you rolled less than 3 fives, just get 50 points for every five you rolled
       score += 50*dice.count(i)  if dice.count(i) >= 1 && dice.count(i) < 3
       next
     else
