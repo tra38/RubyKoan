@@ -20,7 +20,7 @@ def greed
       score += 50*dice.count(i)  if dice.count(i) >= 1 && dice.count(i) < 3
       next
     else
-      #score 100*i points if you roll a number other than one or five 3 times or more
+      #get 100*i points if you roll a number other than one or five 3 times or more
       score += 100*i if dice.count(i) >= 3
       end
     end
