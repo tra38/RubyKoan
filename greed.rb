@@ -13,13 +13,13 @@ def greed
         score += (1000 + ((dice.count(i) - 3) * 100) )
         puts "Triple 1s: 1000"
         if dice.count(i) > 3
-          puts "Additional #{i}s: #{(dice.count(i) - 3) * 100}"
+          puts "Additional 1s: #{(dice.count(i) - 3) * 100}"
           end
         end
       #if you rolled less than 3 ones, just get 100 points for every one you rolled
       if dice.count(i) >= 1 && dice.count(i) < 3
        score += 100*dice.count(i)
-       puts "Lone #{i}s: #{100*dice.count(i)}"
+       puts "Lone 1s: #{100*dice.count(i)}"
        end
     next
     end
