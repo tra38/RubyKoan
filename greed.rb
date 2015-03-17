@@ -27,7 +27,7 @@ def greed
       #if you rolled 3 or more fives, get 500 points for rolling 3 fives plus 50 points for every additional five
       if dice.count(i) >= 3
         score += (500 + 50*(dice.count(i) - 3) )
-        puts "Triple 5s: 50"
+        puts "Triple 5s: 500"
         if dice.count(i) > 3
           puts "Additional 5s: #{(dice.count(i) - 3) * 50}"
           end
