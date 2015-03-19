@@ -6,43 +6,39 @@ def greed
   #display the dice array
   puts "You rolled #{dice}."
   score = 0
-  for i in 1..6 #check all possible die rolls
-    if i == 1 #if you roll a one
-      #if you rolled 3 or more ones, get 1000 points for rolling 3 ones plus 100 points for every additional one
-      if dice.count(i) >= 3
-        score += (1000 + ((dice.count(i) - 3) * 100) )
-        puts "Triple 1s: 1000"
-        if dice.count(i) > 3
-          puts "Additional 1s: #{(dice.count(i) - 3) * 100}"
-          end
-        end
-      #if you rolled less than 3 ones, just get 100 points for every one you rolled
-      if dice.count(i) >= 1 && dice.count(i) < 3
-       score += 100*dice.count(i)
-       puts "Lone 1s: #{100*dice.count(i)}"
-       end
-    next
+  #the following code came from javierjulio, and its goal is to create a Hash
+  #that stores the freqeuency of each possible roll. Default is 0.
+  counts = Hash.new(0) 
+  dice.each do |value|
+    counts[value] += 1
+  end
+  #also from javierjulio, check all possible die rolls from this Hash, and 
+  #assign points accordingly. All scoring rolls are deleted from the Hash
+  counts.each do |roll,numFound|
+    #1000 points for rolling 3 ones, then delete those rolls from the hash
+    if roll == 1 && numFound >= 3
+      score += 1000
+      numFound -= 3
+      puts "Triple 1s: 1000"
     end
-    if i == 5 #if you roll a five
-      #if you rolled 3 or more fives, get 500 points for rolling 3 fives plus 50 points for every additional five
-      if dice.count(i) >= 3
-        score += (500 + 50*(dice.count(i) - 3) )
-        puts "Triple 5s: 500"
-        if dice.count(i) > 3
-          puts "Additional 5s: #{(dice.count(i) - 3) * 50}"
-          end
-        end
-      #if you rolled less than 3 fives, just get 50 points for every five you rolled
-      if dice.count(i) >= 1 && dice.count(i) < 3
-        score += 50*dice.count(i)
-        puts "Lone 5s: #{50*dice.count(i)}"
-        end
-    next
+    #100 points for each "lone" one.
+    if roll == 1 && numFound > 0
+      score += 100*numFound
+      puts "Lone 1s: #{100*numFound}"
+      numFound -= numFound
     end
-    #get 100*i points if you roll a number other than one or five 3 times or more
-    if dice.count(i) >= 3
-      score += 100*i if dice.count(i) >= 3
-      puts "Triple #{i}s: #{100*i}"
+    #get 100*(roll) points if you roll a number other than one 3 times or more. For example,
+    #if you roll three 5s, you get 500 points.
+    if numFound >= 3
+      score += roll*100
+      puts "Triple #{roll}s: #{roll*100}"
+      numFound -= 3
+    end
+    #50 points for each "lone" 5
+    if roll == 5 && numFound > 0
+      score += 50*numFound
+      puts "Lone 5s: #{50*numFound}"
+      numFound -= numFound
     end
   end
   #report your score to the player
