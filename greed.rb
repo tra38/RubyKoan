@@ -1,5 +1,6 @@
 class DiceGames
 
+#High Score is read-write.
 attr_accessor :greed_high_score
 
 def DiceGames.greed
