@@ -4,6 +4,8 @@ class DiceGames
 attr_accessor :greed_high_score
 
 def DiceGames.greed
+  #if high score is currently "nil" (this is the first time you are playing), set the high score to 0.
+  #Otherwise, keep the high score at its current value.
   @greed_high_score ||= 0
   dice = [] #sets up a blank array
   5.times do #use the rand method 5 times and store the (rolled) results in the dice array
