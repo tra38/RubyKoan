@@ -1,4 +1,9 @@
-def greed
+class DiceGames
+
+attr_accessor :greed_high_score
+
+def DiceGames.greed
+  @greed_high_score ||= 0
   dice = [] #sets up a blank array
   5.times do #use the rand method 5 times and store the (rolled) results in the dice array
     dice << rand(1..6) #To make rand behave like a 6-sided die, you have to set the rand paramater as a range.
@@ -43,4 +48,14 @@ def greed
   end
   #report your score to the player
   puts "Your score is #{score}. Thanks for playing!"
+  #check to see if the current high score is lower than your current score.
+  #If it does, set the current high score to equal your current score and praises the player.
+  if @greed_high_score < score
+    @greed_high_score = score
+    puts "Excellent! New high score!"
+    end
+  #let the player know the current high score
+  puts "The current high score is #{@greed_high_score}."
+end
+
 end
